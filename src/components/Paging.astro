@@ -1,0 +1,70 @@
+---
+import type { Page } from 'astro';
+import { maxDisplayPages } from '../site.config';
+
+interface Props {
+  page: Page;
+  baseUrl: string;
+}
+
+const { page, baseUrl } = Astro.props;
+const currentPage: number = page.currentPage;
+const listStartPage: number =
+  currentPage - maxDisplayPages >= 1 ? currentPage - maxDisplayPages : 1;
+const listEndPage: number =
+  currentPage + maxDisplayPages <= page.lastPage ? currentPage + maxDisplayPages : page.lastPage;
+let pageList: { pageNum: number; isCurrent: boolean }[] = [];
+for (let i = listStartPage; i <= listEndPage; i++) {
+  pageList.push({ pageNum: i, isCurrent: i === currentPage });
+}
+Object.freeze(pageList);
+---
+
+<div class="flex w-fit mx-auto gap-2">
+  {
+    page.currentPage !== 1 ? (
+      <div class="py-2 flex gap-2 text-xl">
+        <a href={page.url.first} class="bg-violet-400 rounded-full block text-center p-1 w-10 h-10">
+          &laquo;
+        </a>
+        <a href={page.url.prev} class="bg-violet-300 rounded-full block text-center p-1 w-10 h-10">
+          &lt;
+        </a>
+      </div>
+    ) : (
+      <div class="w-[88px]" />
+    )
+  }
+  <ul class="flex gap-3 border rounded-lg border-violet-950 px-2 py-1">
+    {
+      pageList.map((eachPage) =>
+        eachPage.isCurrent ? (
+          <li class="bg-violet-950 text-violet-100 rounded-full block text-center p-2 w-10 h-10">
+            {eachPage.pageNum}
+          </li>
+        ) : (
+          <a href={`${baseUrl}/p${eachPage.pageNum}/`}>
+            <li class="bg-violet-300 rounded-full block text-center p-2 w-10 h-10">
+              {eachPage.pageNum}
+            </li>
+          </a>
+        ),
+      )
+    }
+  </ul>
+  {
+    page.currentPage !== page.lastPage ? (
+      <div class="py-2 flex gap-2 text-xl">
+        <a href={page.url.next} class="bg-violet-300 rounded-full block text-center p-1 w-10 h-10">
+          &gt;
+        </a>
+        <a href={page.url.last} class="bg-violet-400 rounded-full block text-center p-1 w-10 h-10">
+          &raquo;
+        </a>
+      </div>
+    ) : (
+      <div class="w-[88px]" />
+    )
+  }
+</div>
+<p class="text-center">Page {page.currentPage} of {page.lastPage}</p>

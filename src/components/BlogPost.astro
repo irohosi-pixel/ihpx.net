@@ -1,0 +1,148 @@
+---
+interface Props {
+  post: Post;
+}
+import removeMd from 'remove-markdown';
+import { allAuthors, allCategories, allTags } from '../site.config';
+import { Image } from 'astro:assets';
+
+const { post } = Astro.props;
+const postMeta = post.data;
+
+const updDate = post.data.updDate || post.data.pubDate;
+const author = allAuthors.find((item) => item.id === postMeta.author)!;
+---
+
+<a href={`/posts/${post.id}/`}
+  ><li class="border border-violet-950 rounded p-3 my-2">
+    {
+      postMeta.image && (
+        <Image
+          src={postMeta.image.url}
+          alt={postMeta.image.alt}
+          width={300}
+          height={157}
+          class="block float-left mr-2"
+        />
+      )
+    }
+
+    <div>
+      <h3 class="text-xl border-b border-violet-950 pb-2">{postMeta.title}</h3>
+      <div class="flex gap-2 flex-wrap text-sm">
+        <p>
+          <svg class="w-4 inline mr-1" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+              <path
+                d="M1411.824 0c31.171 0 56.47 25.299 56.47 56.471v56.47h169.412c93.404 0 169.412 76.01 169.412 169.412V1920H113V282.353c0-93.402 76.009-169.412 169.412-169.412h169.411v-56.47c0-31.172 25.3-56.471 56.471-56.471 31.172 0 56.471 25.299 56.471 56.471v56.47h790.589v-56.47c0-31.172 25.299-56.471 56.47-56.471Zm169.413 1242.354h-338.823v338.823h338.823v-338.823Zm-451.766 0H790.647v338.823h338.824v-338.823Zm-451.765 0H338.882v338.823h338.824v-338.823Zm903.531-451.766h-338.823v338.824h338.823V790.588Zm-451.766 0H790.647v338.824h338.824V790.588Zm-451.765 0H338.882v338.824h338.824V790.588ZM451.823 225.882H282.412c-31.059 0-56.47 25.299-56.47 56.471v169.412h1468.234V282.353c0-31.172-25.411-56.471-56.47-56.471h-169.412v56.471c0 31.172-25.299 56.471-56.47 56.471s-56.47-25.299-56.47-56.471v-56.471H564.765v56.471c0 31.172-25.299 56.471-56.471 56.471-31.171 0-56.471-25.299-56.471-56.471v-56.471Z"
+                fill-rule="evenodd"></path>
+            </g></svg
+          >{postMeta.pubDate.getFullYear()}/{
+            (postMeta.pubDate.getMonth() + 1).toString().padStart(2, '0')
+          }/{postMeta.pubDate.getDate().toString().padStart(2, '0')}
+        </p><p>
+          <svg
+            class="w-4 inline mr-1"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+              <g id="style=fill">
+                <g id="edit">
+                  <path
+                    id="Subtract"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M18.9405 3.12087L21.0618 5.24219C22.2334 6.41376 22.2334 8.31326 21.0618 9.48483L19.2586 11.288L12.8947 4.92403L14.6978 3.12087C15.8694 1.94929 17.7689 1.94929 18.9405 3.12087ZM11.834 5.98469L3.70656 14.1121C3.22329 14.5954 2.91952 15.2292 2.84552 15.9086L2.45151 19.5264C2.31313 20.7969 3.38571 21.8695 4.65629 21.7311L8.27401 21.3371C8.95345 21.2631 9.58725 20.9594 10.0705 20.4761L18.1979 12.3486L11.834 5.98469Z"
+                  ></path>
+                </g>
+              </g>
+            </g></svg
+          >
+          {updDate.getFullYear()}/{(updDate.getMonth() + 1).toString().padStart(2, '0')}/{
+            updDate.getDate().toString().padStart(2, '0')
+          }
+        </p>
+        <p>
+          <Image
+            class="inline mr-1 rounded-full"
+            src={author.iconURL}
+            alt={`${author.name}のアイコン`}
+            width={32}
+            height={32}
+          />{author.name}
+        </p>
+      </div>
+      <p>
+        {
+          postMeta.description ||
+            removeMd(post.body!).substring(0, 100) +
+              (removeMd(post.body!).length > 100 ? '...' : '')
+        }
+      </p>
+      {
+        (postMeta.tags || postMeta.category) && (
+          <ul class="flex gap-2 flex-wrap">
+            {postMeta.tags &&
+              postMeta.tags.map((tag) => (
+                <li class="px-2 py-1 bg-violet-300 rounded-lg">
+                  <svg
+                    class="w-4 inline mr-1"
+                    version="1.1"
+                    id="_x32_"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 512 512"
+                    xml:space="preserve"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                    <g id="SVGRepo_iconCarrier">
+                      <g>
+                        <polygon class="st0" points="39.59,277.148 39.595,277.139 39.59,277.139 " />
+                        <polygon
+                          class="st0"
+                          points="472.41,314.05 452.281,293.922 274.451,471.733 59.719,257.001 39.595,277.139 274.451,512 "
+                        />
+                        <path
+                          class="st0"
+                          d="M274.451,422.737l187.894-187.885L237.548,10.065L39.59,0l10.064,197.95L274.451,422.737z M116.768,77.16 c12.974-12.974,33.992-12.974,46.967,0c12.974,12.984,12.974,34.002,0,46.976c-12.974,12.974-33.992,12.974-46.967,0 C103.794,111.162,103.794,90.144,116.768,77.16z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                  {allTags.find((item) => item.id === tag)?.name}
+                </li>
+              ))}
+            {postMeta.category && (
+              <li class="px-2 py-1 bg-violet-300 rounded-lg">
+                <svg class="w-4 inline mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                  <g id="SVGRepo_iconCarrier">
+                    <path d="M18.6695 2H16.7695C14.5895 2 13.4395 3.15 13.4395 5.33V7.23C13.4395 9.41 14.5895 10.56 16.7695 10.56H18.6695C20.8495 10.56 21.9995 9.41 21.9995 7.23V5.33C21.9995 3.15 20.8495 2 18.6695 2Z" />
+                    <path d="M7.24 13.4297H5.34C3.15 13.4297 2 14.5797 2 16.7597V18.6597C2 20.8497 3.15 21.9997 5.33 21.9997H7.23C9.41 21.9997 10.56 20.8497 10.56 18.6697V16.7697C10.57 14.5797 9.42 13.4297 7.24 13.4297Z" />
+                    <path d="M6.29 10.58C8.6593 10.58 10.58 8.6593 10.58 6.29C10.58 3.9207 8.6593 2 6.29 2C3.9207 2 2 3.9207 2 6.29C2 8.6593 3.9207 10.58 6.29 10.58Z" />
+                    <path d="M17.7099 22.0019C20.0792 22.0019 21.9999 20.0812 21.9999 17.7119C21.9999 15.3426 20.0792 13.4219 17.7099 13.4219C15.3406 13.4219 13.4199 15.3426 13.4199 17.7119C13.4199 20.0812 15.3406 22.0019 17.7099 22.0019Z" />
+                  </g>
+                </svg>
+                {allCategories.find((item) => item.id === postMeta.category)!.name}
+              </li>
+            )}
+          </ul>
+        )
+      }
+    </div>
+  </li></a
+>
+<style>
+  p {
+    @apply py-0;
+  }
+</style>

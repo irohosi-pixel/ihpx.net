@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../../../layouts/Layout.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import BlogPost from '../../../../../components/BlogPost.astro';
+import Paging from '../../../../../components/Paging.astro';
+import { pageSize } from '../../../../../site.config';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+  const allYears = [...new Set(allPosts.flatMap((post) => post.data.pubDate.getFullYear()))];
+  return allYears.flatMap((year) => {
+    const yearFilteredPosts = allPosts.filter((post) => post.data.pubDate.getFullYear() === year);
+    const allMonths = [
+      ...new Set(
+        yearFilteredPosts.flatMap((post) =>
+          (post.data.pubDate.getMonth() + 1).toString().padStart(2, '0'),
+        ),
+      ),
+    ];
+    return allMonths.flatMap((month) => {
+      const monthFilteredPosts = yearFilteredPosts.filter(
+        (post) => (post.data.pubDate.getMonth() + 1).toString().padStart(2, '0') === month,
+      );
+      const allDates = [
+        ...new Set(
+          monthFilteredPosts.flatMap((post) =>
+            post.data.pubDate.getDate().toString().padStart(2, '0'),
+          ),
+        ),
+      ];
+      return allDates.flatMap((date) => {
+        const dateFilteredPosts = monthFilteredPosts.filter(
+          (post) => post.data.pubDate.getDate().toString().padStart(2, '0') === date,
+        );
+        return paginate(dateFilteredPosts, {
+          params: { year: year.toString(), month: month.toString(), date: date.toString() },
+          pageSize,
+        });
+      });
+    });
+  });
+}
+const { year, month, date } = Astro.params;
+const { page } = Astro.props;
+const title: string = `${year}年${month}月${date}日の投稿一覧 (ページ${page.currentPage}/${page.lastPage})`;
+const meta: Meta = {
+  title,
+  description: `色星ぴくせるのブログの${year}年${month}月${date}日の投稿一覧 (ページ${page.currentPage}/${page.lastPage})`,
+  breadcrumb: [
+    { href: `/date/${year}/p1`, title: `${year}年の投稿一覧` },
+    { href: `/date/${year}/${month}/p1`, title: `${year}年${month}月の投稿一覧` },
+    { href: Astro.url.pathname, title },
+  ],
+};
+---
+
+<Layout meta={meta}>
+  <ul>
+    {page.data.map((post) => <BlogPost post={post} />)}
+  </ul>
+  <Paging page={page} baseUrl={`/date/${year}/${month}/${date}`} />
+</Layout>
+<style></style>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogPost from '../../components/BlogPost.astro';
+import Paging from '../../components/Paging.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import { pageSize } from '../../site.config';
+import ContentBox from '../../components/ContentBox.astro';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+  const allYears = [...new Set(allPosts.flatMap((post) => post.data.pubDate.getFullYear()))];
+  return paginate(allPosts, { props: { allYears }, pageSize });
+}
+const { page, allYears } = Astro.props;
+const title: string = `ブログ (ページ${page.currentPage}/${page.lastPage})`;
+const meta: Meta = {
+  title,
+  description: `色星ぴくせるのブログの投稿一覧 (ページ${page.currentPage}/${page.lastPage})`,
+  breadcrumb: [{ href: Astro.url.pathname, title }],
+};
+---
+
+<Layout meta={meta}
+  ><ContentBox heading="投稿年一覧"
+    ><ul class="flex flex-wrap gap-3">
+      {
+        allYears.map((year) => (
+          <li>
+            <a
+              class="block px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow"
+              href={`/date/${year}/p1/`}
+            >
+              {year}年
+            </a>
+          </li>
+        ))
+      }
+    </ul></ContentBox
+  >
+  <ul>
+    {page.data.map((post) => <BlogPost post={post} />)}
+  </ul>
+  <Paging page={page} baseUrl="/blog" />
+</Layout>

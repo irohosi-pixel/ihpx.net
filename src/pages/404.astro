@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const meta: Meta = {
+  title: '404 Not Found',
+  description: 'Sorry, お探しのページは見つかりませんでした。',
+  is404: true,
+};
+---
+
+<Layout meta={meta}>
+  <p>
+    Sorry, お探しのページは見つかりませんでした。<br />
+    <a href="/">&lt; トップに戻る</a>
+  </p>
+</Layout>

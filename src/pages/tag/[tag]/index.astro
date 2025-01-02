@@ -1,0 +1,13 @@
+---
+import { allTags } from '../../../site.config';
+
+export async function getStaticPaths() {
+  return allTags.flatMap((tag) => {
+    return {
+      params: { tag: tag.id },
+    };
+  });
+}
+const { tag } = Astro.params;
+return Astro.redirect(`/tag/${tag}/p1`, 308);
+---

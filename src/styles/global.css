@@ -1,0 +1,50 @@
+html {
+  @apply font-mplus bg-violet-100 text-violet-950 selection:bg-violet-700 selection:text-violet-100;
+}
+svg:not(.svg-stroke) {
+  @apply fill-current stroke-none;
+}
+
+svg.svg-stroke {
+  @apply fill-none stroke-current;
+}
+
+p {
+  @apply leading-normal my-2;
+}
+
+.post-content {
+  h2 {
+    @apply text-xl border-b-2 border-violet-950 pb-2 my-3;
+  }
+  h3 {
+    @apply text-lg border-b border-violet-950 pb-2 my-3;
+  }
+  h4 {
+    @apply text-base my-3;
+  }
+  a {
+    @apply underline;
+  }
+  hr {
+    @apply my-2 border border-violet-950;
+  }
+  ul {
+    @apply list-disc pl-5;
+  }
+  ol {
+    @apply list-decimal pl-5;
+  }
+  blockquote {
+    @apply text-violet-700 pl-2 border-l-2 border-violet-700;
+  }
+}
+
+@keyframes fade {
+  0% {
+    @apply opacity-0 translate-y-2;
+  }
+  100% {
+    @apply opacity-100 translate-y-0;
+  }
+}

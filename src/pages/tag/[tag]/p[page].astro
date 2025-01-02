@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import BlogPost from '../../../components/BlogPost.astro';
+import Paging from '../../../components/Paging.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import { allTags, pageSize } from '../../../site.config';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+  return allTags.flatMap((tag) => {
+    const filteredPosts = allPosts.filter((post) => post.data.tags?.includes(tag.id));
+    return paginate(filteredPosts, {
+      params: { tag: tag.id },
+      pageSize,
+    });
+  });
+}
+const { tag } = Astro.params;
+const { page } = Astro.props;
+const tagName = allTags.find((item) => item.id === tag)!.name;
+const title: string = `タグ「${tagName}」の付いた記事 (ページ${page.currentPage}/${page.lastPage})`;
+const meta: Meta = {
+  title,
+  description: `タグ「${tagName}」のついた記事一覧の${page.lastPage}ページ中${page.currentPage}ページ目です。`,
+  breadcrumb: [
+    { href: `/tag`, title: 'タグ一覧' },
+    {
+      href: Astro.url.pathname,
+      title,
+    },
+  ],
+};
+---
+
+<Layout meta={meta}>
+  <ul>
+    {page.data.map((post) => <BlogPost post={post} />)}
+  </ul>
+  <Paging page={page} baseUrl={`/tag/${tag}`} />
+</Layout>

@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import BlogPost from '../../../components/BlogPost.astro';
+import Paging from '../../../components/Paging.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import { pageSize, allAuthors } from '../../../site.config';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+  const allIds = allAuthors.map((item) => item.id);
+  return allIds.flatMap((author) => {
+    const filteredPosts = allPosts.filter((post) => post.data.author === author);
+    return paginate(filteredPosts, {
+      params: { author },
+      pageSize,
+    });
+  });
+}
+const { author } = Astro.params;
+const { page } = Astro.props;
+const authorInfo = allAuthors.find((item) => item.id === author)!;
+const title: string = `${authorInfo.name}が書いた記事一覧(ページ${page.currentPage}/${page.lastPage})`;
+const meta: Meta = {
+  title,
+  description: `${authorInfo.name}が書いた記事一覧の${page.lastPage}ページ中${page.currentPage}ページ目です。`,
+  breadcrumb: [
+    { href: '/author', title: '著者一覧' },
+    { href: Astro.url.pathname, title },
+  ],
+};
+---
+
+<Layout meta={meta}>
+  <ul>
+    {page.data.map((post) => <BlogPost post={post} />)}
+  </ul>
+  <Paging page={page} baseUrl={`/author/${author}`} />
+</Layout>

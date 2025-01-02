@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+  const allYears = [...new Set(allPosts.flatMap((post) => post.data.pubDate.getFullYear()))];
+  return allYears.flatMap((year) => {
+    const yearFilteredPosts = allPosts.filter((post) => post.data.pubDate.getFullYear() === year);
+    const allMonths = [
+      ...new Set(
+        yearFilteredPosts.flatMap((post) =>
+          (post.data.pubDate.getMonth() + 1).toString().padStart(2, '0'),
+        ),
+      ),
+    ];
+    return allMonths.flatMap((month) => {
+      return {
+        params: { year: year.toString(), month: month.toString() },
+      };
+    });
+  });
+}
+const { year, month } = Astro.params;
+return Astro.redirect(`/date/${year}/${month}/p1`, 308);
+---

@@ -1,0 +1,13 @@
+---
+import { allCategories } from '../../../site.config';
+
+export async function getStaticPaths() {
+  return allCategories.flatMap((category) => {
+    return {
+      params: { category: category.id },
+    };
+  });
+}
+const { category } = Astro.params;
+return Astro.redirect(`/category/${category}/p1`, 308);
+---

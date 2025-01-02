@@ -1,0 +1,32 @@
+---
+import Contacts from '../components/Contacts.astro';
+import Layout from '../layouts/Layout.astro';
+
+const title: string = 'お問い合わせ';
+const meta: Meta = {
+  title,
+  description: '当サイトの運営者色星ぴくせるへのお問い合わせ先です。',
+  breadcrumb: [{ href: Astro.url.pathname, title }],
+};
+---
+
+<Layout meta={meta}>
+  <p>
+    以下の連絡先情報を使って色星ぴくせるへお問い合わせができます。<br />
+    一番セキュアな連絡先はメールアドレスです。安全なProtonMailを利用しています。<br />
+    お問い合わせの際は以下の情報を必ずご記入ください。
+  </p>
+  <ul class="list-disc pl-5">
+    <li>
+      お名前（ハンドルネーム）：法的なお問い合わせの際は必ず本名でお問い合わせください。コメントや間違いの指摘等はハンドルネームでかまいません。
+    </li>
+    <li>
+      メールアドレス：メールから送信する場合は不要です。DMから送信する場合は必ず記入ください。
+    </li>
+    <li>
+      件名：書かなくてもかまいません。メールの場合はメッセージのSubjectにご記入ください。DMの場合はテキスト内にお書きください。
+    </li>
+    <li>問い合わせ内容：なるべく詳細にお書きください。</li>
+  </ul>
+  <Contacts contactMode={true} />
+</Layout>

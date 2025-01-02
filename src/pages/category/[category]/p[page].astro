@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import BlogPost from '../../../components/BlogPost.astro';
+import Paging from '../../../components/Paging.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import { allCategories, pageSize } from '../../../site.config';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+
+  return allCategories.flatMap((category) => {
+    const filteredPosts = allPosts.filter((post) => post.data.category === category.id);
+    return paginate(filteredPosts, {
+      params: { category: category.id },
+      pageSize,
+    });
+  });
+}
+const { category } = Astro.params;
+const { page } = Astro.props;
+const categoryName = allCategories.find((item) => item.id === category)!.name;
+const title: string = `カテゴリ「${categoryName}」に分類された記事 (ページ${page.currentPage}/${page.lastPage})`;
+const meta: Meta = {
+  title,
+  description: `カテゴリ「${categoryName}」に分類された記事一覧の${page.lastPage}ページ中${page.currentPage}ページ目です。`,
+  breadcrumb: [
+    { href: '/category', title: 'カテゴリ一覧' },
+    { href: Astro.url.pathname, title },
+  ],
+};
+---
+
+<Layout meta={meta}>
+  <ul>
+    {page.data.map((post) => <BlogPost post={post} />)}
+  </ul>
+  <Paging page={page} baseUrl={`/category/${category}`} />
+</Layout>

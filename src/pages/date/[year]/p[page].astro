@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import Paging from '../../../components/Paging.astro';
+import BlogPost from '../../../components/BlogPost.astro';
+import { pageSize } from '../../../site.config';
+import ContentBox from '../../../components/ContentBox.astro';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = (await getCollection('blog'))
+    .filter((post) => !post.data.ignore)
+    .sort((a, b) => {
+      const aDate = new Date(a.data.pubDate);
+      const bDate = new Date(b.data.pubDate);
+      return bDate.getTime() - aDate.getTime();
+    });
+  const allYears = [...new Set(allPosts.flatMap((post) => post.data.pubDate.getFullYear()))];
+  return allYears.flatMap((year) => {
+    const yearFilteredPosts = allPosts.filter((post) => post.data.pubDate.getFullYear() === year);
+    const allMonths = [
+      ...new Set(
+        yearFilteredPosts.flatMap((post) =>
+          (post.data.pubDate.getMonth() + 1).toString().padStart(2, '0'),
+        ),
+      ),
+    ];
+    return paginate(yearFilteredPosts, {
+      params: { year: year.toString() },
+      props: { allMonths },
+      pageSize,
+    });
+  });
+}
+const { year } = Astro.params;
+const { page, allMonths } = Astro.props;
+const title: string = `${year}年の投稿一覧 (ページ${page.currentPage}/${page.lastPage})`;
+const meta: Meta = {
+  title,
+  description: `色星ぴくせるのブログの${year}年の投稿一覧 (ページ${page.currentPage}/${page.lastPage})`,
+  breadcrumb: [{ href: Astro.url.pathname, title }],
+};
+---
+
+<Layout meta={meta}>
+  <ContentBox heading="投稿月一覧"
+    ><ul class="flex flex-wrap gap-3">
+      {
+        allMonths.map((month) => (
+          <li>
+            <a
+              class="px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow"
+              href={`/date/${year}/${month}/p1/`}
+            >
+              {year}年{month}月
+            </a>
+          </li>
+        ))
+      }
+    </ul></ContentBox
+  >
+  <ul>
+    {page.data.map((post) => <BlogPost post={post} />)}
+  </ul>
+  <Paging page={page} baseUrl={`/date/${year}`} />
+</Layout>

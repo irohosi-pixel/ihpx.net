@@ -1,0 +1,16 @@
+<nav>
+  <ul class="flex gap-4 flex-col sm:flex-row">
+    <li><a href="/blog/p1/">Blog</a></li>
+    <li><a href="/tag/">Tag</a></li>
+    <li><a href="/category/">Category</a></li>
+    <li><a href="/author/">Author</a></li>
+  </ul>
+</nav>
+<style>
+  nav {
+    @apply overflow-hidden max-sm:max-h-0 sm:ml-auto sm:mr-0 transition-all duration-300;
+  }
+  :global(.menu-expanded) nav {
+    @apply max-h-96 my-4 mx-1;
+  }
+</style>

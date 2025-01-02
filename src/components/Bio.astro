@@ -1,0 +1,22 @@
+---
+import ContentBox from './ContentBox.astro';
+import Icon from '../assets/icon.png';
+import { Image } from 'astro:assets';
+---
+
+<ContentBox heading="Bio">
+  <div>
+    <Image
+      src={Icon}
+      width={80}
+      height={80}
+      alt="色星ぴくせるのアイコン"
+      class="block rounded-full float-left mr-2"
+    />
+    <p>
+      趣味でプログラミングをやってる高校生<br />
+      最近はイラストと3DCGの練習中<br />
+      高校の勉強が忙しいよーーー
+    </p>
+  </div>
+</ContentBox>

@@ -1,0 +1,12 @@
+---
+import { allAuthors } from '../../../site.config';
+export async function getStaticPaths() {
+  const allIds = allAuthors.map((item) => item.id);
+  return allIds.flatMap((author) => {
+    return { params: { author } };
+  });
+}
+
+const { author }: { author: string } = Astro.params;
+return Astro.redirect(`/author/${author}/p1`, 308);
+---

@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title: string = 'PGP鍵';
+const meta: Meta = {
+  title,
+  description: '色星ぴくせるがGit署名やメールの署名に使用しているPGP鍵です。',
+  breadcrumb: [{ href: Astro.url.pathname, title }],
+};
+---
+
+<Layout meta={meta}>
+  <p>
+    Git署名やメールの署名に使用しているPGP鍵です。この公開鍵を使用してメールを暗号化して私に送信することもできます。
+  </p>
+  <pre
+    class="bg-violet-200 rounded w-full overflow-x-scroll p-2">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZ1FxsBYJKwYBBAHaRw8BAQdARrtix6VI+rUhHDuGi5ElY1hwdORFAE6tpvIh
+gID85tu0L2lyb2hvc2ktcGl4ZWxAaWhweC5uZXQgPGlyb2hvc2ktcGl4ZWxAaWhw
+eC5uZXQ+iNEEExYKAIMFgmdRcbADCwkHCZC6uaQPbuyJvkUUAAAAAAAcACBzYWx0
+QG5vdGF0aW9ucy5vcGVucGdwanMub3Jn4OgW4ckmukc2HOkOGhd62SL56K4HzDO+
+tNZySPTqyjUDFQoIBBYAAgECGQECmwMCHgEWIQSiiD7LdjGnVCO9y0C6uaQPbuyJ
+vgAAz00BAJTn2FwpZZVExtqCg/Sng9uXzEw+rXWDbw0YjnOORiYdAP0fXd/pijsc
+O6OlUaB5O4wgQoEh0eMUi87RMANk3aQMCbg4BGdRcbASCisGAQQBl1UBBQEBB0BY
+AvmOkoD8p5cxIJ1MElqqoqKojWB+8H0Ui1hnxJM+TgMBCAeIvgQYFgoAcAWCZ1Fx
+sAmQurmkD27sib5FFAAAAAAAHAAgc2FsdEBub3RhdGlvbnMub3BlbnBncGpzLm9y
+ZzBaEqcDz1TW0djVpKymaj8xYyET/R4tjqe+oRrrjCLSApsMFiEEoog+y3Yxp1Qj
+vctAurmkD27sib4AAJH5AQDIHLvZ5rH0j30Jx8jHyV59eAQce983qfaB7rc3rko6
+0gEA/r9B6tUvJb+ntDu55aPKy195s2CCoVuifsdgDIHfegE=
+=4ksS
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+</Layout>

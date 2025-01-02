@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { allCategories } from '../../site.config';
+
+const title = 'カテゴリ一覧';
+const meta: Meta = {
+  title,
+  description: '色星ぴくせるのブログのカテゴリ一覧です。',
+  breadcrumb: [{ href: Astro.url.pathname, title }],
+};
+---
+
+<Layout meta={meta}>
+  <ul class="flex flex-wrap gap-3">
+    {
+      allCategories.map((category) => (
+        <a href={`/category/${category.id}/p1/`}>
+          <li class="px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
+            {category.name}
+          </li>
+        </a>
+      ))
+    }
+  </ul>
+</Layout>
