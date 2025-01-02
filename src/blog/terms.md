@@ -1,6 +1,7 @@
 ---
 title: '利用規約'
 pubDate: 2025-01-02T19:08:41+09
+updDate: 2025-01-03T00:10:00+09
 author: 'irohosi_pixel'
 ignore: true
 ---
@@ -28,5 +29,4 @@ ignore: true
 
 ## 情報収集について
 
-当サイトではCloudflare Web Analyticsを用いたアクセス解析を行っています。　　
-なお、プライバシー保護のため当サイトではGoogleアナリティクス等のCookieを使用したアクセス解析トラッカーは一切導入しておりません。
+当サイトではCloudflare Web Analyticsを用いたアクセス解析を行っています。
