@@ -30,7 +30,7 @@ export default defineConfig({
             tagName: 'i',
 
             properties: {
-              className: ['heading-anchor', 'fa', 'fa-link'],
+              className: ['heading-anchor', 'fa-solid', 'fa-link'],
             },
 
             children: [],

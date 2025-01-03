@@ -4,6 +4,7 @@ import removeMd from 'remove-markdown';
 import { Image } from 'astro:assets';
 import { allAuthors, allCategories, allTags } from '../site.config';
 import LastUpdate from '../components/LastUpdate';
+import '../styles/post.css';
 
 const post: Post = Astro.props.post;
 const postMeta = post.data;
