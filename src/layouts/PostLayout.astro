@@ -145,7 +145,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
       </ul>
     )
   }<LastUpdate client:load updDate={updDate} />
-  <div class="post-content">
+  <article class="prose prose-violet max-w-none">
     <slot />
-  </div>
+  </article>
 </Layout>

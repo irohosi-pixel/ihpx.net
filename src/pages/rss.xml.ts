@@ -11,7 +11,7 @@ export async function GET(context: { site: any }) {
       return bDate.getTime() - aDate.getTime();
     });
   return rss({
-    title: "ブログ | 色星ぴくせる's Site",
+    title: "ブログ | 色星ぴくせる Official Website",
     description: '色星ぴくせるのブログの投稿一覧',
     site: context.site,
     trailingSlash: false,

@@ -13,8 +13,11 @@ const updDate = post.data.updDate || post.data.pubDate;
 const author = allAuthors.find((item) => item.id === postMeta.author)!;
 ---
 
-<a href={`/posts/${post.id}/`}
-  ><li class="border border-violet-950 rounded p-3 my-2">
+<li>
+  <a
+    href={`/posts/${post.id}/`}
+    class="block sm:flex gap-3 border border-violet-950 rounded p-3 my-2"
+  >
     {
       postMeta.image && (
         <Image
@@ -22,7 +25,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           alt={postMeta.image.alt}
           width={300}
           height={157}
-          class="block float-left mr-2"
+          class="block w-full rounded sm:object-cover sm:h-[157px] sm:w-[200px] sm:my-auto"
         />
       )
     }
@@ -138,9 +141,9 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           </ul>
         )
       }
-    </div>
-  </li></a
->
+    </div></a
+  >
+</li>
 <style>
   p {
     @apply py-0;

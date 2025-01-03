@@ -1,43 +1,18 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
+
 html {
   @apply font-mplus bg-violet-100 text-violet-950 selection:bg-violet-700 selection:text-violet-100;
 }
+
 svg:not(.svg-stroke) {
   @apply fill-current stroke-none;
 }
-
 svg.svg-stroke {
   @apply fill-none stroke-current;
 }
 
 p {
   @apply leading-normal my-2;
-}
-
-.post-content {
-  h2 {
-    @apply text-xl border-b-2 border-violet-950 pb-2 my-3;
-  }
-  h3 {
-    @apply text-lg border-b border-violet-950 pb-2 my-3;
-  }
-  h4 {
-    @apply text-base my-3;
-  }
-  a {
-    @apply underline;
-  }
-  hr {
-    @apply my-2 border border-violet-950;
-  }
-  ul {
-    @apply list-disc pl-5;
-  }
-  ol {
-    @apply list-decimal pl-5;
-  }
-  blockquote {
-    @apply text-violet-700 pl-2 border-l-2 border-violet-700;
-  }
 }
 
 @keyframes fade {
@@ -47,4 +22,53 @@ p {
   100% {
     @apply opacity-100 translate-y-0;
   }
+}
+
+.toc {
+  @apply mt-3 border border-violet-950 rounded;
+}
+.toc ol {
+  @apply list-none pl-8;
+  counter-reset: toc;
+}
+.toc ol li {
+  counter-increment: toc;
+}
+.toc ol li:before {
+  content: counters(toc, '.') ' ';
+}
+
+a:has(.heading-anchor) {
+  @apply ml-[-1em];
+}
+.heading-anchor {
+  @apply invisible text-base ml-[0.3rem] text-violet-600 hover:text-violet-950;
+}
+h2:hover .heading-anchor {
+  @apply visible;
+}
+h3:hover .heading-anchor {
+  @apply visible;
+}
+
+.rlc-container {
+  @apply block border border-violet-950 rounded p-3 shadow-md hover:shadow-none transition-shadow relative min-h-36 no-underline;
+}
+.rlc-info {
+  @apply w-3/4;
+}
+.rlc-title {
+  @apply text-lg font-bold;
+}
+.rlc-description {
+  @apply text-sm text-violet-800 truncate;
+}
+.rlc-favicon {
+  @apply inline mr-2 my-0;
+}
+.rlc-image-container {
+  @apply w-1/4 absolute right-0 top-0;
+}
+.rlc-image {
+  @apply max-h-20 mx-auto;
 }

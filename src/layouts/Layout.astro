@@ -30,7 +30,9 @@ const customTransition = {
 
 const { meta } = Astro.props;
 const titleTemplate: string =
-  Astro.url.pathname === '/' ? "色星ぴくせる's Site" : `${meta.title} | 色星ぴくせる's Site`;
+  Astro.url.pathname === '/'
+    ? '色星ぴくせる Official Website'
+    : `${meta.title} | 色星ぴくせる Official Website`;
 const nowDate: Date = new Date();
 ---
 
@@ -50,7 +52,7 @@ const nowDate: Date = new Date();
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="色星ぴくせる's Site"
+      title="色星ぴくせる Official Website"
       href={new URL('rss.xml', Astro.site)}
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -61,7 +63,7 @@ const nowDate: Date = new Date();
       property="og:image"
       content={`${Astro.site}${meta.image ? meta.image : 'ogp.png'}?date=${nowDate.getFullYear()}${(nowDate.getMonth() + 1).toString().padStart(2, '0')}${nowDate.getDate().toString().padStart(2, '0')}`}
     />
-    <meta property="og:site_name" content="色星ぴくせる's Site" />
+    <meta property="og:site_name" content="色星ぴくせる Official Website" />
     <meta property="og:description" content={meta.description} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@irohosi_pixel" />
@@ -69,15 +71,15 @@ const nowDate: Date = new Date();
   </head>
   <body>
     <Header />
-    <main transition:animate={customTransition} class="pt-16 max-w-[800px] w-[90%] mx-auto">
-      {
-        Astro.url.pathname !== '/' && (
-          <div class="mb-4">
-            <h2 class="text-2xl">{meta.title}</h2>
-            {!meta.is404 && <Breadcrumb pages={meta.breadcrumb} />}
-          </div>
-        )
-      }<slot />
+    <main
+      transition:animate={customTransition}
+      class="pt-24 sm:pt-16 max-w-[800px] w-[90%] mx-auto"
+    >
+      <div class={`mb-4${Astro.url.pathname === '/' ? ' hidden' : ''}`}>
+        <h2 class="text-2xl">{meta.title}</h2>
+        {!meta.is404 && Astro.url.pathname !== '/' && <Breadcrumb pages={meta.breadcrumb} />}
+      </div>
+      <slot />
     </main>
     <Footer />
   </body>

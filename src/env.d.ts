@@ -1,3 +1,5 @@
+declare module 'remark-link-card';
+
 interface Meta {
   title?: string;
   description: string;

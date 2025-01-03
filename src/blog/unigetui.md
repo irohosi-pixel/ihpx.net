@@ -23,7 +23,8 @@ UnigetUIとはWingetやnpmなどのパッケージマネージャーをGUIで操
 
 ## 導入方法
 
-<https://apps.microsoft.com/detail/xpfftq032ptphf>  
+<https://apps.microsoft.com/detail/xpfftq032ptphf>
+  
 上記リンクからMicrosoft Storeに飛ぶことができ、そこからインストールできます。  
 
 ## 使い方
