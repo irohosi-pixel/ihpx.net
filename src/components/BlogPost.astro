@@ -25,7 +25,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           alt={postMeta.image.alt}
           width={300}
           height={157}
-          class="block w-full rounded sm:object-cover sm:h-[157px] sm:w-[200px] sm:my-auto"
+          class="block w-full rounded max-sm:mb-3 sm:object-cover sm:h-[157px] sm:w-[200px] sm:my-auto"
         />
       )
     }
@@ -35,7 +35,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
       <div class="flex gap-2 flex-wrap text-sm">
         <p>
           <svg class="w-4 inline mr-1" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
-            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+            ><title>Published Date</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
               id="SVGRepo_tracerCarrier"
               stroke-linecap="round"
               stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
@@ -52,7 +52,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+            ><title>Updated Date</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
               id="SVGRepo_tracerCarrier"
               stroke-linecap="round"
               stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
@@ -104,6 +104,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
                     viewBox="0 0 512 512"
                     xml:space="preserve"
                   >
+                    <title>Tag</title>
                     <g id="SVGRepo_bgCarrier" stroke-width="0" />
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
                     <g id="SVGRepo_iconCarrier">
@@ -126,6 +127,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
             {postMeta.category && (
               <li class="px-2 py-1 bg-violet-300 rounded-lg">
                 <svg class="w-4 inline mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <title>Category</title>
                   <g id="SVGRepo_bgCarrier" stroke-width="0" />
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
                   <g id="SVGRepo_iconCarrier">
@@ -147,5 +149,13 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
 <style>
   p {
     @apply py-0;
+  }
+  html:has(#themeToggle.dark) {
+    .bg-violet-300 {
+      @apply bg-violet-700;
+    }
+    .border-violet-950 {
+      @apply border-violet-50;
+    }
   }
 </style>

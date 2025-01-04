@@ -1,6 +1,7 @@
 ---
 import MenuBtn from './MenuBtn.astro';
 import Navigation from './Navigation.astro';
+import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header
@@ -8,7 +9,11 @@ import Navigation from './Navigation.astro';
   class="box-border fixed px-4 py-2 sm:flex sm:content-between bg-white bg-opacity-50 top-2 left-2 right-2 rounded backdrop-blur-sm z-10"
 >
   <div class="flex flex-row content-between">
-    <h1 class="text-2xl"><a href="/">色星ぴくせる Official Website</a></h1><MenuBtn />
+    <h1 class="text-2xl"><a href="/">色星ぴくせる Official Website</a></h1><div
+      class="ml-auto mr-0 flex gap-2 h-fit"
+    >
+      <ThemeIcon /><MenuBtn />
+    </div>
   </div><Navigation />
 </header>
 <script is:inline>
@@ -16,3 +21,8 @@ import Navigation from './Navigation.astro';
     document.querySelector('header').classList.toggle('menu-expanded');
   });
 </script>
+<style>
+  html:has(#themeToggle.dark) header {
+    @apply bg-violet-950 bg-opacity-50;
+  }
+</style>

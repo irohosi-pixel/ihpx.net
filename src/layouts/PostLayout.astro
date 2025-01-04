@@ -35,7 +35,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
   <div class="flex gap-2 flex-wrap text-sm">
     <p>
       <svg class="w-4 inline mr-1" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
-        ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+        ><title>Published Date</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
           id="SVGRepo_tracerCarrier"
           stroke-linecap="round"
           stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
@@ -57,7 +57,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+        ><title>Updated Date</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
           id="SVGRepo_tracerCarrier"
           stroke-linecap="round"
           stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
@@ -96,7 +96,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
         {postMeta.tags &&
           postMeta.tags.map((tag) => (
             <a href={`/tag/${tag}/p1/`}>
-              <li class="px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
+              <li class="linkItem px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
                 <svg
                   class="w-4 inline mr-1"
                   version="1.1"
@@ -106,6 +106,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
                   viewBox="0 0 512 512"
                   xml:space="preserve"
                 >
+                  <title>Tag</title>
                   <g id="SVGRepo_bgCarrier" stroke-width="0" />
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
                   <g id="SVGRepo_iconCarrier">
@@ -128,8 +129,9 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           ))}
         {postMeta.category && (
           <a href={`/category/${postMeta.category}/p1/`}>
-            <li class="px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
+            <li class="linkItem px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
               <svg class="w-4 inline mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <title>Category</title>
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
                 <g id="SVGRepo_iconCarrier">
@@ -149,4 +151,9 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
   <article class="prose prose-violet max-w-none">
     <slot />
   </article>
+  <script is:inline>
+    if (document.querySelector('#themeToggle').classList.contains('dark')) {
+      document.querySelector('.prose').classList.add('prose-invert');
+    }
+  </script>
 </Layout>

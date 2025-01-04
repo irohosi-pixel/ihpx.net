@@ -8,8 +8,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import { Image } from 'astro:assets';
-import topImage from '../assets/top.png';
+import PageTop from '../components/PageTop.astro';
 
 const anim = {
   old: {
@@ -73,10 +72,7 @@ const nowDate: Date = new Date();
   </head>
   <body>
     <Header />
-    <main
-      transition:animate={customTransition}
-      class="pt-24 sm:pt-16 max-w-[800px] w-[90%] mx-auto"
-    >
+    <main transition:animate={customTransition} class="pt-24 max-w-[800px] w-[90%] mx-auto">
       <div class={`mb-4${Astro.url.pathname === '/' ? ' hidden' : ''}`}>
         <h2 class="text-2xl">{meta.title}</h2>
         {!meta.is404 && Astro.url.pathname !== '/' && <Breadcrumb pages={meta.breadcrumb} />}
@@ -84,16 +80,6 @@ const nowDate: Date = new Date();
       <slot />
     </main>
     <Footer />
-    <Image
-      src={topImage}
-      width={60}
-      height={60}
-      alt="Back to top"
-      class="page-top fixed bottom-4 right-4 cursor-pointer"
-      transition:persist
-    />
-    <script>
-      import '../scripts/top.js';
-    </script>
+    <PageTop />
   </body>
 </html>

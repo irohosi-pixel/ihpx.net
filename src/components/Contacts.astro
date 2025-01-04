@@ -118,3 +118,9 @@ const filteredAccounts = myAccounts.filter((account) => !contactMode || account.
     </li>
   </ul>
 </ContentBox>
+<style>
+  html:has(#themeToggle.dark) a,
+  html:has(#themeToggle.dark) li:not(:has(a)) {
+    @apply bg-[#5b3a91] shadow-[#554968];
+  }
+</style>

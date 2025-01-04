@@ -28,3 +28,8 @@ const { pages } = Astro.props;
     ))
   }
 </ol>
+<style>
+  html:has(#themeToggle.dark) li {
+    @apply after:text-violet-50;
+  }
+</style>

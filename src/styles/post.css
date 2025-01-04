@@ -47,3 +47,18 @@ h3:hover .heading-anchor {
 .rlc-image {
   @apply max-h-20 mx-auto;
 }
+
+html:has(#themeToggle.dark) {
+  .toc {
+    @apply border-violet-100;
+  }
+  .heading-anchor {
+    @apply text-violet-300 hover:text-violet-100;
+  }
+  .rlc-container {
+    @apply border-violet-100;
+  }
+  .rlc-description {
+    @apply text-violet-300;
+  }
+}

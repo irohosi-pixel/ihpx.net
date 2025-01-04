@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import topImage from '../assets/pageTop.png';
+---
+
+<Image
+  src={topImage}
+  width={120}
+  height={120}
+  alt="Back to top"
+  class="page-top fixed bottom-4 right-4 cursor-pointer w-14 h-14"
+  transition:persist
+/>
+<script>
+  import '../scripts/pageTop.js';
+</script>
