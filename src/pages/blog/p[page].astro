@@ -6,6 +6,7 @@ import Paging from '../../components/Paging.astro';
 import type { GetStaticPathsOptions } from 'astro';
 import { pageSize } from '../../site.config';
 import ContentBox from '../../components/ContentBox.astro';
+import BoxLink from '../../components/BoxLink.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = (await getCollection('blog'))
@@ -33,12 +34,7 @@ const meta: Meta = {
       {
         allYears.map((year) => (
           <li>
-            <a
-              class="linkItem block rounded-lg bg-violet-300 px-2 py-1 shadow-md transition-shadow hover:shadow-none"
-              href={`/date/${year}/p1/`}
-            >
-              {year}年
-            </a>
+            <BoxLink href={`/date/${year}/p1/`}>{year}年</BoxLink>
           </li>
         ))
       }

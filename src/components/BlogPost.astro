@@ -16,7 +16,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
 <li>
   <a
     href={`/posts/${post.id}/`}
-    class="my-2 block gap-3 rounded border border-violet-950 p-3 sm:flex"
+    class="my-2 block gap-3 rounded border border-violet-950 p-3 sm:flex dark:border-violet-50"
   >
     {
       postMeta.image && (
@@ -31,7 +31,9 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
     }
 
     <div>
-      <h3 class="border-b border-violet-950 pb-2 text-xl">{postMeta.title}</h3>
+      <h3 class="border-b border-violet-950 pb-2 text-xl dark:border-violet-50">
+        {postMeta.title}
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
         <p>
           <svg class="mr-1 inline w-4" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +96,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           <ul class="flex flex-wrap gap-2">
             {postMeta.tags &&
               postMeta.tags.map((tag) => (
-                <li class="rounded-lg bg-violet-300 px-2 py-1">
+                <li class="rounded-lg bg-violet-300 px-2 py-1 dark:bg-violet-700">
                   <svg
                     class="mr-1 inline w-4"
                     version="1.1"
@@ -125,7 +127,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
                 </li>
               ))}
             {postMeta.category && (
-              <li class="rounded-lg bg-violet-300 px-2 py-1">
+              <li class="rounded-lg bg-violet-300 px-2 py-1 dark:bg-violet-700">
                 <svg class="mr-1 inline w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <title>Category</title>
                   <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -146,16 +148,3 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
     </div></a
   >
 </li>
-<style>
-  p {
-    @apply py-0;
-  }
-  html:has(#themeToggle.dark) {
-    .bg-violet-300 {
-      @apply bg-violet-700;
-    }
-    .border-violet-950 {
-      @apply border-violet-50;
-    }
-  }
-</style>

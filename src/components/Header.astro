@@ -6,7 +6,7 @@ import ThemeIcon from './ThemeIcon.astro';
 
 <header
   transition:persist
-  class="fixed left-2 right-2 top-2 z-10 box-border rounded bg-white bg-opacity-50 px-4 py-2 backdrop-blur-sm sm:flex sm:content-between"
+  class="group fixed left-2 right-2 top-2 z-10 box-border rounded bg-white bg-opacity-50 px-4 py-2 backdrop-blur-sm transition-transform sm:flex sm:content-between dark:bg-violet-950 dark:bg-opacity-50"
 >
   <div class="flex flex-row content-between">
     <h1 class="text-2xl"><a href="/">色星ぴくせる Official Website</a></h1><div
@@ -17,12 +17,14 @@ import ThemeIcon from './ThemeIcon.astro';
   </div><Navigation />
 </header>
 <script is:inline>
+  const header = document.querySelector('header');
   document.querySelector('.menu').addEventListener('click', () => {
-    document.querySelector('header').classList.toggle('menu-expanded');
+    header.setAttribute(
+      'aria-expanded',
+      header.getAttribute('aria-expanded') === 'true' ? 'false' : 'true',
+    );
+  });
+  document.addEventListener('astro:after-swap', () => {
+    header.setAttribute('aria-expanded', 'false');
   });
 </script>
-<style>
-  html:has(#themeToggle.dark) header {
-    @apply bg-violet-950 bg-opacity-50;
-  }
-</style>

@@ -1,21 +1,14 @@
 ---
 const { pages } = Astro.props;
+let breadcrumb = pages;
+breadcrumb = [{ href: '/', title: 'ホーム' }, ...pages];
 ---
 
 <ol class="pt-2" itemscope itemtype="https://schema.org/BreadcrumbList">
-  <li
-    class="inline-block after:px-1 after:text-sm after:text-violet-600 after:content-['≫'] last:after:content-none"
-    itemprop="itemListElement"
-    itemscope
-    itemtype="https://schema.org/ListItem"
-  >
-    <a itemprop="item" href={new URL('/', Astro.site)}> <span itemprop="name">ホーム</span></a>
-    <meta itemprop="position" content="1" />
-  </li>
   {
-    pages.map((page: { href: string; title: string }, index: number) => (
+    breadcrumb.map((page: { href: string; title: string }, index: number) => (
       <li
-        class="inline-block after:px-1 after:text-sm after:text-violet-600 after:content-['≫'] last:after:content-none"
+        class="inline-block after:px-1 after:text-sm after:text-violet-600 after:content-['≫'] last:after:content-none dark:after:text-violet-50"
         itemprop="itemListElement"
         itemscope
         itemtype="https://schema.org/ListItem"
@@ -23,13 +16,8 @@ const { pages } = Astro.props;
         <a itemprop="item" href={new URL(page.href, Astro.site)}>
           <span itemprop="name">{page.title}</span>
         </a>
-        <meta itemprop="position" content={(index + 2).toString()} />
+        <meta itemprop="position" content={index.toString()} />
       </li>
     ))
   }
 </ol>
-<style>
-  html:has(#themeToggle.dark) li {
-    @apply after:text-violet-50;
-  }
-</style>

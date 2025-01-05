@@ -5,6 +5,7 @@ import { Image } from 'astro:assets';
 import { allAuthors, allCategories, allTags } from '../site.config';
 import LastUpdate from '../components/LastUpdate';
 import '../styles/post.css';
+import BoxLink from '../components/BoxLink.astro';
 
 const post: Post = Astro.props.post;
 const postMeta = post.data;
@@ -92,11 +93,11 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
   {postMeta.description && <p>{postMeta.description}</p>}
   {
     (postMeta.tags || postMeta.category) && (
-      <ul class="flex flex-wrap gap-2">
+      <ul class="my-5 flex flex-wrap gap-2">
         {postMeta.tags &&
           postMeta.tags.map((tag) => (
-            <a href={`/tag/${tag}/p1/`}>
-              <li class="linkItem rounded-lg bg-violet-300 px-2 py-1 shadow-md transition-shadow hover:shadow-none">
+            <li>
+              <BoxLink href={`/tag/${tag}/p1/`}>
                 <svg
                   class="mr-1 inline w-4"
                   version="1.1"
@@ -124,12 +125,12 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
                   </g>
                 </svg>
                 {allTags.find((item) => item.id === tag)?.name}
-              </li>
-            </a>
+              </BoxLink>
+            </li>
           ))}
         {postMeta.category && (
-          <a href={`/category/${postMeta.category}/p1/`}>
-            <li class="linkItem rounded-lg bg-violet-300 px-2 py-1 shadow-md transition-shadow hover:shadow-none">
+          <li>
+            <BoxLink href={`/category/${postMeta.category}/p1/`}>
               <svg class="mr-1 inline w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <title>Category</title>
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -142,18 +143,13 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
                 </g>
               </svg>
               {allCategories.find((item) => item.id === postMeta.category)!.name}
-            </li>
-          </a>
+            </BoxLink>
+          </li>
         )}
       </ul>
     )
   }<LastUpdate client:load updDate={updDate} />
-  <article class="prose prose-violet max-w-none">
+  <article class="prose prose-violet max-w-none dark:prose-invert">
     <slot />
   </article>
-  <script is:inline>
-    if (document.querySelector('#themeToggle').classList.contains('dark')) {
-      document.querySelector('.prose').classList.add('prose-invert');
-    }
-  </script>
 </Layout>

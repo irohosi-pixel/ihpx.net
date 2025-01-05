@@ -1,6 +1,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
 .toc {
-  @apply mt-3 rounded border border-violet-950;
+  @apply mt-3 rounded border border-violet-950 dark:border-violet-100;
 }
 .toc ol {
   @apply list-none pl-8;
@@ -13,11 +13,8 @@
   content: counters(toc, '.') ' ';
 }
 
-a:has(.heading-anchor) {
-  @apply ml-[-1em];
-}
 .heading-anchor {
-  @apply invisible ml-[0.3rem] text-base text-violet-600 hover:text-violet-950;
+  @apply invisible ml-2 text-base text-violet-600 hover:text-violet-900 dark:text-violet-500 dark:hover:text-violet-300;
 }
 h2:hover .heading-anchor {
   @apply visible;
@@ -27,7 +24,7 @@ h3:hover .heading-anchor {
 }
 
 .rlc-container {
-  @apply relative block min-h-36 rounded border border-violet-950 p-3 no-underline shadow-md transition-shadow hover:shadow-none;
+  @apply relative block min-h-36 rounded border border-violet-950 p-3 no-underline shadow-md transition-shadow hover:shadow-none dark:border-violet-100;
 }
 .rlc-info {
   @apply w-3/4;
@@ -36,7 +33,7 @@ h3:hover .heading-anchor {
   @apply text-lg font-bold;
 }
 .rlc-description {
-  @apply truncate text-sm text-violet-800;
+  @apply truncate text-sm text-violet-800 dark:text-violet-300;
 }
 .rlc-favicon {
   @apply my-0 mr-2 inline;
@@ -46,19 +43,4 @@ h3:hover .heading-anchor {
 }
 .rlc-image {
   @apply mx-auto max-h-20;
-}
-
-html:has(#themeToggle.dark) {
-  .toc {
-    @apply border-violet-100;
-  }
-  .heading-anchor {
-    @apply text-violet-300 hover:text-violet-100;
-  }
-  .rlc-container {
-    @apply border-violet-100;
-  }
-  .rlc-description {
-    @apply text-violet-300;
-  }
 }

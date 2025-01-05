@@ -1,22 +1,15 @@
-html {
-  @apply bg-violet-100 font-mplus text-violet-950 selection:bg-violet-700 selection:text-violet-100;
-}
-html:has(#themeToggle.dark) {
-  @apply bg-[#211e25] text-violet-100 selection:bg-violet-100 selection:text-violet-700;
-  .linkItem {
-    @apply bg-violet-700 shadow-[#554968];
+@tailwind base;
+
+@layer base {
+  p {
+    @apply my-2 leading-normal;
   }
-}
-
-svg:not(.svg-stroke) {
-  @apply fill-current stroke-none;
-}
-svg.svg-stroke {
-  @apply fill-none stroke-current;
-}
-
-p {
-  @apply my-2 leading-normal;
+  svg:not(.svg-stroke) {
+    @apply fill-current stroke-none;
+  }
+  svg.svg-stroke {
+    @apply fill-none stroke-current;
+  }
 }
 
 @keyframes fade {
