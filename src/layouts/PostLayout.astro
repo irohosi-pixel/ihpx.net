@@ -32,9 +32,9 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
     width={1200}
     height={630}
   />
-  <div class="flex gap-2 flex-wrap text-sm">
+  <div class="flex flex-wrap gap-2 text-sm">
     <p>
-      <svg class="w-4 inline mr-1" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
+      <svg class="mr-1 inline w-4" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
         ><title>Published Date</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
           id="SVGRepo_tracerCarrier"
           stroke-linecap="round"
@@ -53,7 +53,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
       >
     </p><p>
       <svg
-        class="w-4 inline mr-1"
+        class="mr-1 inline w-4"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
     <p>
       <a href={`/author/${author.id}/p1/`}
         ><Image
-          class="inline mr-1 rounded-full"
+          class="mr-1 inline rounded-full"
           src={author.iconURL}
           alt={`${author.name}のアイコン`}
           width={32}
@@ -92,13 +92,13 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
   {postMeta.description && <p>{postMeta.description}</p>}
   {
     (postMeta.tags || postMeta.category) && (
-      <ul class="flex gap-2 flex-wrap">
+      <ul class="flex flex-wrap gap-2">
         {postMeta.tags &&
           postMeta.tags.map((tag) => (
             <a href={`/tag/${tag}/p1/`}>
-              <li class="linkItem px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
+              <li class="linkItem rounded-lg bg-violet-300 px-2 py-1 shadow-md transition-shadow hover:shadow-none">
                 <svg
-                  class="w-4 inline mr-1"
+                  class="mr-1 inline w-4"
                   version="1.1"
                   id="_x32_"
                   xmlns="http://www.w3.org/2000/svg"
@@ -129,8 +129,8 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           ))}
         {postMeta.category && (
           <a href={`/category/${postMeta.category}/p1/`}>
-            <li class="linkItem px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
-              <svg class="w-4 inline mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <li class="linkItem rounded-lg bg-violet-300 px-2 py-1 shadow-md transition-shadow hover:shadow-none">
+              <svg class="mr-1 inline w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <title>Category</title>
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />

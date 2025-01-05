@@ -20,19 +20,19 @@ for (let i = listStartPage; i <= listEndPage; i++) {
 Object.freeze(pageList);
 ---
 
-<div class="flex w-fit mx-auto gap-2">
+<div class="mx-auto flex w-fit gap-2">
   {
     page.currentPage !== 1 ? (
-      <div class="py-2 flex gap-2 text-xl">
+      <div class="flex gap-2 py-2 text-xl">
         <a
           href={page.url.first}
-          class="firstLast bg-violet-400 rounded-full block text-center p-1 w-10 h-10"
+          class="firstLast block h-10 w-10 rounded-full bg-violet-400 p-1 text-center"
         >
           &laquo;
         </a>
         <a
           href={page.url.prev}
-          class="prevNext bg-violet-300 rounded-full block text-center p-1 w-10 h-10"
+          class="prevNext block h-10 w-10 rounded-full bg-violet-300 p-1 text-center"
         >
           &lt;
         </a>
@@ -41,16 +41,16 @@ Object.freeze(pageList);
       <div class="w-[88px]" />
     )
   }
-  <ul class="pageList flex gap-3 border rounded-lg border-violet-950 px-2 py-1">
+  <ul class="pageList flex gap-3 rounded-lg border border-violet-950 px-2 py-1">
     {
       pageList.map((eachPage) =>
         eachPage.isCurrent ? (
-          <li class="pageCurrent bg-violet-950 text-violet-100 rounded-full block text-center p-2 w-10 h-10">
+          <li class="pageCurrent block h-10 w-10 rounded-full bg-violet-950 p-2 text-center text-violet-100">
             {eachPage.pageNum}
           </li>
         ) : (
           <a href={`${baseUrl}/p${eachPage.pageNum}/`}>
-            <li class="pages bg-violet-300 rounded-full block text-center p-2 w-10 h-10">
+            <li class="pages block h-10 w-10 rounded-full bg-violet-300 p-2 text-center">
               {eachPage.pageNum}
             </li>
           </a>
@@ -60,16 +60,16 @@ Object.freeze(pageList);
   </ul>
   {
     page.currentPage !== page.lastPage ? (
-      <div class="py-2 flex gap-2 text-xl">
+      <div class="flex gap-2 py-2 text-xl">
         <a
           href={page.url.next}
-          class="prevNext bg-violet-300 rounded-full block text-center p-1 w-10 h-10"
+          class="prevNext block h-10 w-10 rounded-full bg-violet-300 p-1 text-center"
         >
           &gt;
         </a>
         <a
           href={page.url.last}
-          class="firstLast bg-violet-400 rounded-full block text-center p-1 w-10 h-10"
+          class="firstLast block h-10 w-10 rounded-full bg-violet-400 p-1 text-center"
         >
           &raquo;
         </a>

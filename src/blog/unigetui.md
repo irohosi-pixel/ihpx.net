@@ -3,8 +3,8 @@ title: 'UniGetUIが便利すぎた'
 pubDate: 2025-01-02T19:08:41+09
 updDate: 2025-01-02T19:08:41+09
 image:
-    url: '/posts/unigetui/0.png'
-    alt: 'UnigetUIのロゴ'
+  url: '/posts/unigetui/0.png'
+  alt: 'UnigetUIのロゴ'
 author: 'irohosi_pixel'
 category: 'software'
 tags: ['windows']
@@ -24,8 +24,8 @@ UnigetUIとはWingetやnpmなどのパッケージマネージャーをGUIで操
 ## 導入方法
 
 <https://apps.microsoft.com/detail/xpfftq032ptphf>
-  
-上記リンクからMicrosoft Storeに飛ぶことができ、そこからインストールできます。  
+
+上記リンクからMicrosoft Storeに飛ぶことができ、そこからインストールできます。
 
 ## 使い方
 

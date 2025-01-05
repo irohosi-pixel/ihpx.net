@@ -68,14 +68,14 @@ const filteredAccounts = myAccounts.filter((account) => !contactMode || account.
               href={account.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="block p-3 bg-violet-200 my-2 rounded shadow-md hover:shadow-none transition-shadow"
+              class="my-2 block rounded bg-violet-200 p-3 shadow-md transition-shadow hover:shadow-none"
             >
               <Fragment set:html={account.icon.replace('<svg', '<svg class="w-5 inline"')} />
               {account.username}
             </a>
           </li>
         ) : (
-          <li class="p-3 bg-violet-200 my-2 rounded">
+          <li class="my-2 rounded bg-violet-200 p-3">
             <Fragment set:html={account.icon.replace('<svg', '<svg class="w-5 inline"')} />
             {account.username}
           </li>
@@ -85,9 +85,9 @@ const filteredAccounts = myAccounts.filter((account) => !contactMode || account.
     <li>
       <a
         href="/pgp/"
-        class="block p-3 bg-violet-200 my-2 rounded shadow-md hover:shadow-none transition-shadow"
+        class="my-2 block rounded bg-violet-200 p-3 shadow-md transition-shadow hover:shadow-none"
         ><svg
-          class="w-5 inline"
+          class="inline w-5"
           role="img"
           viewBox="0 0 20 20"
           version="1.1"

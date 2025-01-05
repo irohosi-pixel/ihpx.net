@@ -1,4 +1,4 @@
-<div class="menu w-8 h-8 sm:hidden relative">
+<div class="menu relative h-8 w-8 sm:hidden">
   <svg class="open" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
     ><title>Open Menu</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
       id="SVGRepo_tracerCarrier"
@@ -31,10 +31,10 @@
 </div>
 <style>
   .open {
-    @apply w-8 opacity-100 transition-opacity absolute;
+    @apply absolute w-8 opacity-100 transition-opacity;
   }
   .close {
-    @apply w-8 opacity-0 transition-opacity absolute;
+    @apply absolute w-8 opacity-0 transition-opacity;
   }
   :global(.menu-expanded) {
     .open {

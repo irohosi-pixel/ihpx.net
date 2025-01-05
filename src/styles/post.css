@@ -1,6 +1,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
 .toc {
-  @apply mt-3 border border-violet-950 rounded;
+  @apply mt-3 rounded border border-violet-950;
 }
 .toc ol {
   @apply list-none pl-8;
@@ -17,7 +17,7 @@ a:has(.heading-anchor) {
   @apply ml-[-1em];
 }
 .heading-anchor {
-  @apply invisible text-base ml-[0.3rem] text-violet-600 hover:text-violet-950;
+  @apply invisible ml-[0.3rem] text-base text-violet-600 hover:text-violet-950;
 }
 h2:hover .heading-anchor {
   @apply visible;
@@ -27,7 +27,7 @@ h3:hover .heading-anchor {
 }
 
 .rlc-container {
-  @apply block border border-violet-950 rounded p-3 shadow-md hover:shadow-none transition-shadow relative min-h-36 no-underline;
+  @apply relative block min-h-36 rounded border border-violet-950 p-3 no-underline shadow-md transition-shadow hover:shadow-none;
 }
 .rlc-info {
   @apply w-3/4;
@@ -36,16 +36,16 @@ h3:hover .heading-anchor {
   @apply text-lg font-bold;
 }
 .rlc-description {
-  @apply text-sm text-violet-800 truncate;
+  @apply truncate text-sm text-violet-800;
 }
 .rlc-favicon {
-  @apply inline mr-2 my-0;
+  @apply my-0 mr-2 inline;
 }
 .rlc-image-container {
-  @apply w-1/4 absolute right-0 top-0;
+  @apply absolute right-0 top-0 w-1/4;
 }
 .rlc-image {
-  @apply max-h-20 mx-auto;
+  @apply mx-auto max-h-20;
 }
 
 html:has(#themeToggle.dark) {

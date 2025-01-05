@@ -16,9 +16,9 @@ const meta: Meta = {
     {
       allAuthors.map((author) => (
         <a href={`/author/${author.id}/p1/`}>
-          <li class="linkItem px-2 py-1 bg-violet-300 rounded-lg shadow-md hover:shadow-none transition-shadow">
+          <li class="linkItem rounded-lg bg-violet-300 px-2 py-1 shadow-md transition-shadow hover:shadow-none">
             <Image
-              class="inline mr-1 rounded-full"
+              class="mr-1 inline rounded-full"
               src={author.iconURL}
               alt={`${author.name}のアイコン`}
               width={32}

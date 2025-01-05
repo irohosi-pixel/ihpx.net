@@ -63,16 +63,20 @@ if (fs.existsSync(`src/blog/${postID ? postID : generateRandomString(6)}.md`)) {
     `src/blog/${postID ? postID : generateRandomString(6)}.md`,
     `---
 title: '${title}'
-pubDate: ${datetime[0]}-${datetime[1]}-${datetime[2]}T${datetime[3]}:${datetime[4]}:${datetime[5]
+pubDate: ${datetime[0]}-${datetime[1]}-${datetime[2]}T${datetime[3]}:${datetime[4]}:${
+      datetime[5]
     }+09
-updDate: ${datetime[0]}-${datetime[1]}-${datetime[2]}T${datetime[3]}:${datetime[4]}:${datetime[5]
+updDate: ${datetime[0]}-${datetime[1]}-${datetime[2]}T${datetime[3]}:${datetime[4]}:${
+      datetime[5]
     }+09${description && `\ndescription: '${description}'\n`}
-author: '${author}'${image.url &&
-    image.alt &&
-    `\nimage:
+author: '${author}'${
+      image.url &&
+      image.alt &&
+      `\nimage:
   url: '${image.url}'
   alt: '${image.alt}'\n`
-    }${category && `\ncategory: '${category}'\n`}${tags && `\ntags: [${tags.split(',').map((tag) => `'${tag}', `)}]\n`
+    }${category && `\ncategory: '${category}'\n`}${
+      tags && `\ntags: [${tags.split(',').map((tag) => `'${tag}', `)}]\n`
     }
 ignore: ${(ignore.toUpperCase() === 'Y').toString()}
 ---

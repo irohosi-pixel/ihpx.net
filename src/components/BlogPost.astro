@@ -16,7 +16,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
 <li>
   <a
     href={`/posts/${post.id}/`}
-    class="block sm:flex gap-3 border border-violet-950 rounded p-3 my-2"
+    class="my-2 block gap-3 rounded border border-violet-950 p-3 sm:flex"
   >
     {
       postMeta.image && (
@@ -25,16 +25,16 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           alt={postMeta.image.alt}
           width={300}
           height={157}
-          class="block w-full rounded max-sm:mb-3 sm:object-cover sm:h-[157px] sm:w-[200px] sm:my-auto"
+          class="block w-full rounded max-sm:mb-3 sm:my-auto sm:h-[157px] sm:w-[200px] sm:object-cover"
         />
       )
     }
 
     <div>
-      <h3 class="text-xl border-b border-violet-950 pb-2">{postMeta.title}</h3>
-      <div class="flex gap-2 flex-wrap text-sm">
+      <h3 class="border-b border-violet-950 pb-2 text-xl">{postMeta.title}</h3>
+      <div class="flex flex-wrap gap-2 text-sm">
         <p>
-          <svg class="w-4 inline mr-1" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
+          <svg class="mr-1 inline w-4" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
             ><title>Published Date</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
               id="SVGRepo_tracerCarrier"
               stroke-linecap="round"
@@ -48,7 +48,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
           }/{postMeta.pubDate.getDate().toString().padStart(2, '0')}
         </p><p>
           <svg
-            class="w-4 inline mr-1"
+            class="mr-1 inline w-4"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
         </p>
         <p>
           <Image
-            class="inline mr-1 rounded-full"
+            class="mr-1 inline rounded-full"
             src={author.iconURL}
             alt={`${author.name}のアイコン`}
             width={32}
@@ -91,12 +91,12 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
       </p>
       {
         (postMeta.tags || postMeta.category) && (
-          <ul class="flex gap-2 flex-wrap">
+          <ul class="flex flex-wrap gap-2">
             {postMeta.tags &&
               postMeta.tags.map((tag) => (
-                <li class="px-2 py-1 bg-violet-300 rounded-lg">
+                <li class="rounded-lg bg-violet-300 px-2 py-1">
                   <svg
-                    class="w-4 inline mr-1"
+                    class="mr-1 inline w-4"
                     version="1.1"
                     id="_x32_"
                     xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +125,8 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
                 </li>
               ))}
             {postMeta.category && (
-              <li class="px-2 py-1 bg-violet-300 rounded-lg">
-                <svg class="w-4 inline mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <li class="rounded-lg bg-violet-300 px-2 py-1">
+                <svg class="mr-1 inline w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <title>Category</title>
                   <g id="SVGRepo_bgCarrier" stroke-width="0" />
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />

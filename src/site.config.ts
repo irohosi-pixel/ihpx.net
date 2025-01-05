@@ -17,7 +17,7 @@ export const allTags: {
 export const allCategories: {
   id: string;
   name: string;
-}[] = [{id: 'software', name: 'ソフトウェア'}];
+}[] = [{ id: 'software', name: 'ソフトウェア' }];
 
 export const maxDisplayPages: number = 3;
 export const pageSize: number = 10;

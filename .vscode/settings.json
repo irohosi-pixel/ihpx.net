@@ -1,12 +1,8 @@
 {
-  "cSpell.words": [
-    "Bluesky",
-    "Codeberg",
-    "ihpx",
-    "irohosi",
-    "Misskey"
-  ],
-  "cSpell.ignoreWords": [
-    "rohos"
-  ]
+  "cSpell.words": ["Bluesky", "Codeberg", "ihpx", "irohosi", "Misskey"],
+  "cSpell.ignoreWords": ["rohos"],
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
