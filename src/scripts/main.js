@@ -4,7 +4,6 @@ $(function () {
   let lastScrollTop = 0;
   const header = $('header');
   const topBtn = $('.page-top');
-  topBtn.hide();
   $(window).scroll(function () {
     $(this).scrollTop() > 150 ? topBtn.fadeIn() : topBtn.fadeOut();
     let currentScrollTop = $(this).scrollTop();
