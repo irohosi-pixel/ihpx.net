@@ -29,4 +29,6 @@ ignore: true
 
 ## 情報収集について
 
-当サイトではCloudflare Web Analyticsを用いたアクセス解析を行っています。
+当サイトでは[Simple Analytics](https://www.simpleanalytics.com/)を利用したアクセス解析を行っています。  
+Simple Analyticsはプライバシーファーストのアクセス解析ツールです。ユーザーのプライバシーを守りつつコンテンツの改善等につなげられます。  
+詳しくは、Simple Analyticsの[利用規約](https://dashboard.simpleanalytics.com/general-terms-and-conditions)や[プライバシーポリシー](https://dashboard.simpleanalytics.com/privacy-policy)、[何を収集するのか](https://docs.simpleanalytics.com/what-we-collect)などをご確認ください。

@@ -44,6 +44,15 @@ const nowDate: Date = new Date();
 >
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
+    <!-- 100% privacy-first analytics -->
+    <script is:inline async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript
+      ><img
+        src="https://queue.simpleanalyticscdn.com/noscript.gif"
+        alt=""
+        referrerpolicy="no-referrer-when-downgrade"
+      /></noscript
+    >
     <meta name="viewport" content="width=device-width" />
     <title>{titleTemplate}</title>
     <meta name="description" content={meta.description} />
