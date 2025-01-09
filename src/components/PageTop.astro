@@ -3,13 +3,6 @@ import { Image } from 'astro:assets';
 import topImage from '../assets/pageTop.png';
 ---
 
-<button class="page-top fixed bottom-4 right-4 hidden">
-  <Image
-    src={topImage}
-    width={120}
-    height={120}
-    alt="Back to top"
-    class="h-14 w-14"
-    transition:persist
-  />
+<button class="page-top fixed bottom-4 right-4 hidden" transition:persist>
+  <Image src={topImage} width={120} height={120} alt="Go to top" class="h-14 w-14" />
 </button>
