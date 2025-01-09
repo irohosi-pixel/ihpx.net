@@ -27,12 +27,12 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
 ---
 
 <Layout meta={meta}>
-  <Image
-    src={postMeta.image ? postMeta.image.url : `/posts/${post.id}/ogp.png`}
-    alt={postMeta.image ? postMeta.image.alt : `${postMeta.title}の自動生成されたOGP画像`}
-    width={1200}
-    height={630}
-  />
+  {
+    postMeta.image && (
+      <Image src={postMeta.image.url} alt={postMeta.image.alt} width={1200} height={630} />
+    )
+  }
+
   <div class="flex flex-wrap gap-2 text-sm">
     <p>
       <svg class="mr-1 inline w-4" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
@@ -94,6 +94,24 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
   {
     (postMeta.tags || postMeta.category) && (
       <ul class="my-5 flex flex-wrap gap-2">
+        {postMeta.category && (
+          <li>
+            <BoxLink href={`/category/${postMeta.category}/p1/`}>
+              <svg class="mr-1 inline w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <title>Category</title>
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M18.6695 2H16.7695C14.5895 2 13.4395 3.15 13.4395 5.33V7.23C13.4395 9.41 14.5895 10.56 16.7695 10.56H18.6695C20.8495 10.56 21.9995 9.41 21.9995 7.23V5.33C21.9995 3.15 20.8495 2 18.6695 2Z" />
+                  <path d="M7.24 13.4297H5.34C3.15 13.4297 2 14.5797 2 16.7597V18.6597C2 20.8497 3.15 21.9997 5.33 21.9997H7.23C9.41 21.9997 10.56 20.8497 10.56 18.6697V16.7697C10.57 14.5797 9.42 13.4297 7.24 13.4297Z" />
+                  <path d="M6.29 10.58C8.6593 10.58 10.58 8.6593 10.58 6.29C10.58 3.9207 8.6593 2 6.29 2C3.9207 2 2 3.9207 2 6.29C2 8.6593 3.9207 10.58 6.29 10.58Z" />
+                  <path d="M17.7099 22.0019C20.0792 22.0019 21.9999 20.0812 21.9999 17.7119C21.9999 15.3426 20.0792 13.4219 17.7099 13.4219C15.3406 13.4219 13.4199 15.3426 13.4199 17.7119C13.4199 20.0812 15.3406 22.0019 17.7099 22.0019Z" />
+                </g>
+              </svg>
+              {allCategories.find((item) => item.id === postMeta.category)!.name}
+            </BoxLink>
+          </li>
+        )}
         {postMeta.tags &&
           postMeta.tags.map((tag) => (
             <li>
@@ -128,24 +146,6 @@ const author = allAuthors.find((item) => item.id === postMeta.author)!;
               </BoxLink>
             </li>
           ))}
-        {postMeta.category && (
-          <li>
-            <BoxLink href={`/category/${postMeta.category}/p1/`}>
-              <svg class="mr-1 inline w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <title>Category</title>
-                <g id="SVGRepo_bgCarrier" stroke-width="0" />
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-                <g id="SVGRepo_iconCarrier">
-                  <path d="M18.6695 2H16.7695C14.5895 2 13.4395 3.15 13.4395 5.33V7.23C13.4395 9.41 14.5895 10.56 16.7695 10.56H18.6695C20.8495 10.56 21.9995 9.41 21.9995 7.23V5.33C21.9995 3.15 20.8495 2 18.6695 2Z" />
-                  <path d="M7.24 13.4297H5.34C3.15 13.4297 2 14.5797 2 16.7597V18.6597C2 20.8497 3.15 21.9997 5.33 21.9997H7.23C9.41 21.9997 10.56 20.8497 10.56 18.6697V16.7697C10.57 14.5797 9.42 13.4297 7.24 13.4297Z" />
-                  <path d="M6.29 10.58C8.6593 10.58 10.58 8.6593 10.58 6.29C10.58 3.9207 8.6593 2 6.29 2C3.9207 2 2 3.9207 2 6.29C2 8.6593 3.9207 10.58 6.29 10.58Z" />
-                  <path d="M17.7099 22.0019C20.0792 22.0019 21.9999 20.0812 21.9999 17.7119C21.9999 15.3426 20.0792 13.4219 17.7099 13.4219C15.3406 13.4219 13.4199 15.3426 13.4199 17.7119C13.4199 20.0812 15.3406 22.0019 17.7099 22.0019Z" />
-                </g>
-              </svg>
-              {allCategories.find((item) => item.id === postMeta.category)!.name}
-            </BoxLink>
-          </li>
-        )}
       </ul>
     )
   }<LastUpdate client:load updDate={updDate} />
